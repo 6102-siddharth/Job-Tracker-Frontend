@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+const API_URL = "https://job-tracker-backend-56f8.onrender.com";
 
 export default function JobCard({ job, resume }) {
   const [match, setMatch] = useState(null);
 
   useEffect(() => {
     if (resume) {
-      axios.post("http://localhost:5000/match", {
+      axios.post(`${API_URL}/match`, {
         resume,
         job: job.description
       }).then(res => setMatch(res.data));
@@ -19,7 +20,7 @@ export default function JobCard({ job, resume }) {
   const apply = async () => {
     window.open("job.url", "_blank");// https://example.com
     if (confirm("Did you apply?")) {
-      await axios.post("http://localhost:5000/apply", job);
+      await axios.post(`${API_URL}/apply`, job);
       alert("Application Saved");
     }
   };
