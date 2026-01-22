@@ -11,8 +11,8 @@ export default function App() {
   const [resume, setResume] = useState("");
 
   useEffect(() => {
-    axios.get($`{API_URL}/jobs`).then(res => setJobs(res.data));
-    axios.get($`{API_URL}/resume`)
+    axios.get(`${API_URL}/jobs`).then(res => setJobs(res.data));
+    axios.get(`${API_URL}/resume`)
     .then(res => setResume(res.data.resumeText))
     .catch(err => console.error(err));
   }, []);
